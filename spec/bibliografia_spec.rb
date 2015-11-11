@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Bibliografia do
   
+  context "Bibliografia" do
+      
   before :each do
       @libro = Bibliografia::Referencia.new(
         ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
@@ -71,7 +73,9 @@ describe Bibliografia do
    end
    
    it "Existe un método para obtener la referencia formateada" do
-    expect(@libro.to_s).to eq ("Dave Thomas, Andy Hunt, Chad Fowler\nProgramming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide\n(The Facets of Ruby)\nPragmatic Bookshelf; 4 edition (July 7, 2013)\nISBN-13: 968-1937785499\nISBN-10: 1937785491\n")
+    expect(@libro.to_s).to eq("Dave Thomas, Andy Hunt, Chad Fowler\nProgramming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide\n(The Facets of Ruby)\nPragmatic Bookshelf; 4 edition (July 7, 2013)\nISBN-13: 968-1937785499\nISBN-10: 1937785491\n")
+   end
+   
    end
    
 end   
