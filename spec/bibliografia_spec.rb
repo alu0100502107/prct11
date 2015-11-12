@@ -126,4 +126,9 @@ describe Bibliografia do
     end
   end
 
+  context "Lista Enlazada" do
+    before :all do
+      lista = Bibliografia::Lista_enlazada.new
+    end 
+  end
 end   
