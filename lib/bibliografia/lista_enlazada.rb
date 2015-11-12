@@ -14,10 +14,10 @@ module Bibliografia
         attr_accessor :principio, :final
        
         #Constructor
-        def initialize 
-            @principio = nil
-            @final = nil
+        def initialize(nodo = nil)
+            @principio = nodo
+            @final = principio
         end
-    
+
     end
 end
