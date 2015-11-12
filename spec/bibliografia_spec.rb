@@ -50,35 +50,35 @@ describe Bibliografia do
 	    )
     end
    
-    it "deben de existir uno o más autores" do
+    it "Deben de existir uno o más autores" do
       expect(@libro1.autores).not_to be_empty 
     end
    
-    it "debe de existir un título" do
+    it "Debe de existir un título" do
       expect(@libro1.titulo).not_to be_nil
     end
    
-    it "debe de existir una serie" do
+    it "Debe de existir una serie" do
       expect(@libro1.serie).not_to be_nil
     end
    
-    it "debe existir una editorial" do
+    it "Debe existir una editorial" do
       expect(@libro1.editorial).not_to be_nil
     end
 
-    it "debe existir un número de edición" do
+    it "Debe existir un número de edición" do
       expect(@libro1.num_edicion).not_to be_nil
     end
    
-    it "debe existir una fecha de publicación" do
+    it "Debe existir una fecha de publicación" do
       expect(@libro1.fecha_publicacion).not_to be_nil
     end
    
-    it "debe existir uno o más números ISBN" do
+    it "Debe existir uno o más números ISBN" do
       expect(@libro1.num_isbns).not_to be_empty 
     end
    
-    it "debe existir un método para obtener el listado de autores" do
+    it "Debe existir un método para obtener el listado de autores" do
       expect(@libro1.print_autor).to eq("Dave Thomas, Andy Hunt, Chad Fowler")
     end
    
@@ -118,6 +118,11 @@ describe Bibliografia do
       @nodo3 = Bibliografia::Nodo.new(@libro3, nil)
       @nodo4 = Bibliografia::Nodo.new(@libro4, nil)
       @nodo5 = Bibliografia::Nodo.new(@libro5, nil)
+    end
+    
+    it "Debe existir un nodo de la lista con sus datos y su siguiente" do
+      expect(@nodo1.referencia).to eq(@libro1)
+      expect(@nodo1.siguiente).to eq(nil)
     end
   end
    
