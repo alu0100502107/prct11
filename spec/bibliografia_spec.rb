@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Bibliografia do
-  context "Bibliografia" do
     before :all do
       @libro1 = Bibliografia::Referencia.new(
         ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
@@ -50,6 +49,7 @@ describe Bibliografia do
 	    )
     end
    
+  context "Bibliografia" do 
     it "Deben de existir uno o más autores" do
       expect(@libro1.autores).not_to be_empty 
     end
@@ -125,5 +125,5 @@ describe Bibliografia do
       expect(@nodo1.siguiente).to eq(nil)
     end
   end
-   
+
 end   
