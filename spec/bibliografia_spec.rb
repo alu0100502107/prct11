@@ -47,8 +47,14 @@ describe Bibliografia do
 	      "August 2, 2013",
 	      ["1449325866", "978-1449325862"]
 	    )
+	  
+      @nodo1 = Bibliografia::Nodo.new(@libro1, nil)
+      @nodo2 = Bibliografia::Nodo.new(@libro2, nil)
+      @nodo3 = Bibliografia::Nodo.new(@libro3, nil)
+      @nodo4 = Bibliografia::Nodo.new(@libro4, nil)
+      @nodo5 = Bibliografia::Nodo.new(@libro5, nil)
     end
-   
+
   context "Bibliografia" do 
     it "Deben de existir uno o más autores" do
       expect(@libro1.autores).not_to be_empty 
@@ -112,14 +118,6 @@ describe Bibliografia do
   end
    
   context "Nodo" do
-    before :all do
-      @nodo1 = Bibliografia::Nodo.new(@libro1, nil)
-      @nodo2 = Bibliografia::Nodo.new(@libro2, nil)
-      @nodo3 = Bibliografia::Nodo.new(@libro3, nil)
-      @nodo4 = Bibliografia::Nodo.new(@libro4, nil)
-      @nodo5 = Bibliografia::Nodo.new(@libro5, nil)
-    end
-    
     it "Debe existir un nodo de la lista con sus datos y su siguiente" do
       expect(@nodo1.referencia).to eq(@libro1)
       expect(@nodo1.siguiente).to eq(nil)
@@ -128,7 +126,20 @@ describe Bibliografia do
 
   context "Lista Enlazada" do
     before :all do
-      lista = Bibliografia::Lista_enlazada.new
+      @lista = Bibliografia::Lista_enlazada.new
     end 
-  end
-end   
+    
+    # it "Se extrae el primer elemento de la lista" do
+    #   @lista.insertar_lista(@nodo1)
+    #   expect(@lista.extraer_primero).to eq(@nodo2)
+    # end
+    
+    it "Se puede insertar un elemento" do
+      @lista.insertar_lista(@nodo2)
+      expect(@lista.principio).to eq(@nodo2)
+    end
+      
+      
+  end   
+
+end
