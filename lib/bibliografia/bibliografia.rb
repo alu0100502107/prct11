@@ -16,7 +16,7 @@ module Bibliografia
       @fecha_publicacion = fecha_publicacion
       @num_isbns = num_isbns
     end
-
+  
     # Muestra lista de autores
     def print_autor
       count = 0
