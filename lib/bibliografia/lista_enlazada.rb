@@ -7,19 +7,17 @@ module Bibliografia
         def to_s
             @referencia.to_s
         end
-
+        
     class Lista_enlazada
-        
+       
         #Getters + Setters
-        attr_accessor :head, :tail
-        
-        #Constructor 
-        def initialize(head, tail)
-            @head = nil
-            @tail = nil
+        attr_accessor :principio, :final
+       
+        #Constructor
+        def initialize 
+            @principio = nil
+            @final = nil
         end
-        
-    end
-        
     
+    end
 end
