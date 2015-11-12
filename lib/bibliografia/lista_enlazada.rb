@@ -38,7 +38,7 @@ module Bibliografia
         end
         
         #Extraer primer nodo de la lista
-        # def extraer_primero
+        # def extraer_lista
         #     ref = @principio.referencia
         #     @principio = @principio.siguiente
         #     return ref

@@ -131,12 +131,20 @@ describe Bibliografia do
     
     # it "Se extrae el primer elemento de la lista" do
     #   @lista.insertar_lista(@nodo1)
-    #   expect(@lista.extraer_primero).to eq(@nodo2)
+    #   expect(@list.principio).to eq(@nodo1)
+    #   @lista.extraer_lista
     # end
     
     it "Se puede insertar un elemento" do
       @lista.insertar_lista(@nodo2)
       expect(@lista.principio).to eq(@nodo2)
+    end
+    
+    it "Se pueden insertar varios elementos" do
+      @lista.insertar_lista(@nodo3)
+      expect(@lista.principio).to eq(@nodo3)
+      @lista.insertar_lista(@nodo4)
+      expect(@lista.principio).to eq(@nodo4)
     end
       
       
