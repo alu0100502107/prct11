@@ -146,6 +146,13 @@ describe Bibliografia do
       @lista.insertar_lista(@nodo4)
       expect(@lista.principio).to eq(@nodo4)
     end
+    
+    it "Debe existir una lista con su cabeza" do
+      @lista.insertar_lista(@nodo5)
+      expect(@lista.principio).to eq(@nodo5)
+      
+    end 
+      
       
       
   end   
