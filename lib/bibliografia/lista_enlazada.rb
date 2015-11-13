@@ -1,16 +1,17 @@
 module Bibliografia
 
     #Nodo de la lista enlazada 
-    Nodo = Struct.new(:referencia, :siguiente)
+    Nodo = Struct.new(:referencia, :siguiente) do
 
         #Método para puts
         def to_s
             @referencia.to_s
         end
+    end
         
     class Lista_enlazada
        
-        #Getters + Setters
+        #Getter + Setter
         attr_accessor :principio
        
         #Constructor
@@ -19,7 +20,7 @@ module Bibliografia
         end
         
         #Comprobar la lista
-        def comprobar_lista
+        def es_primero?
             if (@principio == nil)
                 return true  #Lista vacía 
             else
@@ -27,9 +28,9 @@ module Bibliografia
             end
         end 
         
-        #Insertar nodo en la lista
+        #Insertar nodo en la lista por el principio
         def insertar_lista(nodo)
-            if (comprobar_lista == true)    
+            if (es_primero?)    
                 @principio = nodo
             else
                 nodo.siguiente = @principio
@@ -37,11 +38,11 @@ module Bibliografia
             end
         end
         
-        #Extraer primer nodo de la lista
-        # def extraer_lista
-        #     ref = @principio.referencia
-        #     @principio = @principio.siguiente
-        #     return ref
-        # end
+        #Extraer nodo de la lista por el principio
+        def extraer_lista
+            ref = @principio.referencia
+            @principio = @principio.siguiente
+            return ref
+        end
     end
 end
