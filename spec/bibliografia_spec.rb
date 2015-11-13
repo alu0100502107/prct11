@@ -129,11 +129,11 @@ describe Bibliografia do
       @lista = Bibliografia::Lista_enlazada.new
     end 
     
-    # it "Se extrae el primer elemento de la lista" do
-    #   @lista.insertar_lista(@nodo1)
-    #   expect(@list.principio).to eq(@nodo1)
-    #   @lista.extraer_lista
-    # end
+    it "Se extrae el primer elemento de la lista" do
+      @lista.insertar_lista(@nodo1)
+      expect(@lista.principio).to eq(@nodo1)
+      @lista.extraer_lista
+    end
     
     it "Se puede insertar un elemento" do
       @lista.insertar_lista(@nodo2)
@@ -150,11 +150,7 @@ describe Bibliografia do
     it "Debe existir una lista con su cabeza" do
       @lista.insertar_lista(@nodo5)
       expect(@lista.principio).to eq(@nodo5)
-      
     end 
-      
-      
-      
   end   
 
 end
