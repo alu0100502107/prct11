@@ -29,7 +29,8 @@ module Bibliografia
         end 
         
         #Insertar nodo en la lista por el principio
-        def insertar_lista(nodo)
+        def insertar_lista(item)
+            nodo = Nodo.new(item,nil)
             if (es_primero?)    
                 @principio = nodo
             else
