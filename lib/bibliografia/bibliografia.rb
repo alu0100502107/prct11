@@ -45,4 +45,11 @@ module Bibliografia
       "#{print_autor}\n#{titulo}\n#{serie}\n#{editorial}; #{num_edicion} #{fecha_publicacion}\n#{print_isbn}"
     end
   end
+  
+  class Libro < Referencia
+    #Constructor
+    def initialize(*parametros)
+      super
+    end
+  end # clase
 end
