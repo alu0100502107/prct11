@@ -52,4 +52,15 @@ module Bibliografia
       super
     end
   end # clase
+  
+  class Articulo_revista < Referencia
+    # Getter + Setter
+    attr_accessor :num_issns
+    
+    # Constructor
+    def initialize(*parametros, num_issns)
+        super(*parametros, num_issns)
+        @num_issns = num_issns
+    end
+  end
 end
