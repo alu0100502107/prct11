@@ -21,8 +21,8 @@ module Bibliografia
         end
         
         #Comprobar la lista
-        def es_primero?
-            if (@principio == nil)
+        def es_lista_vacia?
+            if @principio == nil && @final == nil
                 return true  #Lista vacía 
             else
                 return false #Lista no vacía
@@ -31,58 +31,63 @@ module Bibliografia
         
         #Insertar nodo en la lista por el principio
         def insertar_lista_principio(referencia)
-            nodo = Nodo.new(referencia, nil, nil)
-            if (es_primero?)    
-                @principio = nodo
-                @final = nodo
+            if @principio != nil && @principio.siguiente != nil
+                n = @principio
+                @principio = Nodo.new(referencia, n, nil)
+                n.anterior = @principio
+            elsif @principio != nil
+                n = @principio
+                @principio = Nod.new(referencia, n, nil)
+                n.anterior = @principio
+                @final = n
             else
-                nodo.siguiente = @principio
-                @principio.anterior = nodo
-                @principio = nodo
+                @principio = Nodo.new(referencia, nil, nil)
+                @final = @principio
             end
         end
         
         #Extraer nodo de la lista por el principio
         def extraer_lista_principio
-            if (es_primero?)
-                return false
+            if (es_lista_vacia?)
+                return nil
             else 
                 ref = @principio.referencia
                 @principio = @principio.siguiente
-                if (!es_primero?)
-                    @principio.anterior = nil
+                @principio.anterior = nil
+                if (principio.siguiente == nil)
+                    @final = @principio
                 end
-            return ref
+                ref
             end
         end
         
         #Insertar nodo en la lista por el final
         def insertar_lista_final(referencia)
-            nodo = Nodo.new(referencia, nil, nil)
-            if (es_primero?)    
-                @principio = nodo
-                @final = nodo
+            if @tail != nil
+                @final = Nodo.new(referencia, nil, @final)
+                n = @final.anterior
+                n.siguiente = @final
             else
-                nodo.anterior = @final
-                @final.siguiente = nodo
-                @final = nodo
+                @principio = Nodo.new(referencia, nil, nil)
+                @final = @principio
             end
         end
         
         #Extraer nodo de la lista por el final
         def extraer_lista_final
-            if (es_primero?)
-                return false
+            if (es_lista_vacia?)
+                return nil
             else 
                 ref = @final.referencia
                 @final = @final.anterior
-                if (!es_primero?)
-                    @final.siguiente = nil
-                else 
+                if (es_primero?)
                     @principio = nil
+                else 
+                    @final.siguiente = nil
                 end
-            return ref
+                ref
             end
+            
         end
     end
 end

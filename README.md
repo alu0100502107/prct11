@@ -1,4 +1,4 @@
 Lenguajes y Paradigmas de Programación
-Práctica de Laboratorio #7. Programación Orientada a Objetos
+Práctica de Laboratorio #8. POO: Herencia
 Autora: Vanessa Marín Barella (vaneMB)
    
