@@ -211,4 +211,56 @@ describe Bibliografia do
       expect(@articulo_revista).instance_of?Bibliografia::Articulo_revista
     end
   end # context
+  
+  context "Artículo de Periodico" do
+    before :all do
+      @articulo_periodico = Bibliografia::Articulo_periodico.new(
+        ["Richard E. Silverman"], 
+        "Git Pocket Guide",
+        "Serie",
+	      "O’Reilly Media",
+	      "1 edition" ,
+	      "August 2, 2013",
+	      "8"
+	    )
+    end
+    
+    it "Es un artículo de Periodico" do
+      expect(@articulo_periodico).is_a?Bibliografia::Articulo_periodico
+    end
+    
+    it "Es una Referencia" do
+      expect(@articulo_periodico).is_a?Bibliografia::Referencia
+    end
+    
+    it "Es una instancia de Articulo_periodico" do
+      expect(@articulo_periodico).instance_of?Bibliografia::Articulo_periodico
+    end
+  end # context
+  
+  context "Documento electronico" do
+    before :all do
+      @documento_electronico = Bibliografia::Documento_electronico.new(
+        ["Richard E. Silverman"], 
+        "Git Pocket Guide",
+        "Serie",
+	      "O’Reilly Media",
+	      "1 edition" ,
+	      "August 2, 2013",
+	      "https://www.oreillymedia.es"
+	    )
+    end
+    
+    it "Es un documento electrónico" do
+      expect(@documento_electronico).is_a?Bibliografia::Documento_electronico
+    end
+    
+    it "Es una Referencia" do
+      expect(@documento_electronico).is_a?Bibliografia::Referencia
+    end
+    
+    it "Es una instancia de Documento_electronico" do
+      expect(@documento_electronico).instance_of?Bibliografia::Documento_electronico
+    end
+  end # context
 end
