@@ -158,5 +158,24 @@ describe Bibliografia do
       expect(@lista.principio.referencia).to eq(@libro1)
       @lista.extraer_lista_principio.should eq(@libro1)
     end
-  end   
+  end  #context
+  
+  context "# Libro" do
+    before :all do
+      @libro3 = Bibliografia::Libro.new(
+        ["David Flanagan", "Yukihiro Matsumoto"], 
+        "The Ruby Programming Language",
+        "",
+	      "O’Reilly Media",
+	      "1 edition" ,
+	      "February 4, 2008",
+	      ["0596516177", "978-0596516178"]
+	    ) 
+    end
+    
+    it "Es una instancia de Libro" do
+      expect(@libro3).is_a?Bibliografia::Libro
+    end
+    
+  end # context
 end
