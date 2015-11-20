@@ -63,4 +63,26 @@ module Bibliografia
         @num_issns = num_issns
     end
   end
+  
+  class Articulo_periodico < Referencia
+    # Getter + Setter
+    attr_accessor :num_columnas
+    
+    # Constructor
+    def initialize(*parametros, num_columnas)
+        super(*parametros, num_columnas)
+        @num_columnas = num_columnas
+    end
+  end
+  
+  class Documento_electronico < Referencia
+    # Getter + Setter
+    attr_accessor :url
+    
+    # Constructor
+    def initialize(*parametros, url)
+        super(*parametros, url)
+        @url = url
+    end
+  end
 end
