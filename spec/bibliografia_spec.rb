@@ -160,7 +160,7 @@ describe Bibliografia do
     end
   end  #context
   
-  context "# Libro" do
+  context "Libro" do
     before :all do
       @libro3 = Bibliografia::Libro.new(
         ["David Flanagan", "Yukihiro Matsumoto"], 
@@ -184,6 +184,31 @@ describe Bibliografia do
     it "Es una instancia de Libro" do
       expect(@libro3).instance_of?Bibliografia::Libro
     end
+  end # context
+  
+  context "Artículo de Revista" do
+    before :all do
+      @articulo_revista = Bibliografia::Articulo_revista.new(
+        ["David Chelimsky", "Dave Astels", " Bryan Helmkamp", "Dan North", "Zach Dennis", "Aslak Hellesoy"], 
+        "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends",
+        "The Facets of Ruby",
+	      "Pragmatic Bookshelf",
+	      "1 edition" ,
+	      "December 25, 2010",
+	      ["1934356379", "978-1934356371"]
+	    )
+    end
     
+    it "Es un artículo de Revista" do
+      expect(@articulo_revista).is_a?Bibliografia::Articulo_revista
+    end
+    
+    it "Es una Referencia" do
+      expect(@articulo_revista).is_a?Bibliografia::Referencia
+    end
+    
+    it "Es una instancia de Articulo_revista" do
+      expect(@articulo_revista).instance_of?Bibliografia::Articulo_revista
+    end
   end # context
 end
