@@ -59,7 +59,7 @@ module Bibliografia
     
     # Constructor
     def initialize(*parametros, num_issns)
-        super(*parametros, num_issns)
+        super(*parametros)
         @num_issns = num_issns
     end
   end
@@ -70,7 +70,7 @@ module Bibliografia
     
     # Constructor
     def initialize(*parametros, num_columnas)
-        super(*parametros, num_columnas)
+        super(*parametros)
         @num_columnas = num_columnas
     end
   end
@@ -81,7 +81,7 @@ module Bibliografia
     
     # Constructor
     def initialize(*parametros, url)
-        super(*parametros, url)
+        super(*parametros)
         @url = url
     end
   end

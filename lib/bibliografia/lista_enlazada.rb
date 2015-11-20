@@ -19,16 +19,7 @@ module Bibliografia
             @principio = nil
             @final = nil
         end
-        
-        #Comprobar la lista
-        def es_lista_vacia?
-            if @principio == nil && @final == nil
-                return true  #Lista vacía 
-            else
-                return false #Lista no vacía
-            end
-        end 
-        
+
         #Insertar nodo en la lista por el principio
         def insertar_lista_principio(referencia)
             if @principio != nil && @principio.siguiente != nil
@@ -37,7 +28,7 @@ module Bibliografia
                 n.anterior = @principio
             elsif @principio != nil
                 n = @principio
-                @principio = Nod.new(referencia, n, nil)
+                @principio = Nodo.new(referencia, n, nil)
                 n.anterior = @principio
                 @final = n
             else
@@ -48,22 +39,19 @@ module Bibliografia
         
         #Extraer nodo de la lista por el principio
         def extraer_lista_principio
-            if (es_lista_vacia?)
-                return nil
-            else 
-                ref = @principio.referencia
-                @principio = @principio.siguiente
+            ref = @principio
+            @principio = ref.siguiente
+            if @principio != nil
                 @principio.anterior = nil
-                if (principio.siguiente == nil)
-                    @final = @principio
-                end
-                ref
+            else
+                @final = @principio
             end
+            ref
         end
         
         #Insertar nodo en la lista por el final
         def insertar_lista_final(referencia)
-            if @tail != nil
+            if @final != nil
                 @final = Nodo.new(referencia, nil, @final)
                 n = @final.anterior
                 n.siguiente = @final
@@ -75,19 +63,14 @@ module Bibliografia
         
         #Extraer nodo de la lista por el final
         def extraer_lista_final
-            if (es_lista_vacia?)
-                return nil
-            else 
-                ref = @final.referencia
-                @final = @final.anterior
-                if (es_primero?)
-                    @principio = nil
-                else 
-                    @final.siguiente = nil
-                end
-                ref
+            ref = @final
+            @final = ref.anterior
+            if @final != nil
+                @final.siguiente = nil
+            else
+                @principio = @final
             end
-            
+            ref
         end
     end
 end
