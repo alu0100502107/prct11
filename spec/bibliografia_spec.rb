@@ -89,48 +89,48 @@ describe Bibliografia do
 
   context "Lista Enlazada" do
     before :all do
-    #   @libro1 = Bibliografia::Referencia.new(
-    #     ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
-    #     "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
-    #     "(The Facets of Ruby)",
-	   #   "Pragmatic Bookshelf",
-	   #   "4 edition",
-	   #   "(July 7, 2013)",
-	   #   ["968-1937785499", "1937785491"]
-	   # )
-	   # @libro2 = Bibliografia::Referencia.new(
-    #     ["Scott Chacon"], 
-    #     "Pro Git 2009th Edition",
-    #     "Pro",
-	   #   "Apress",
-	   #   "2009 edition" ,
-	   #   "August 27, 2009",
-	   #   ["968-1430218333", "1430218339"]
-	   # ) 
+      @libro1 = Bibliografia::Referencia.new(
+        ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
+        "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
+        "(The Facets of Ruby)",
+	      "Pragmatic Bookshelf",
+	      "4 edition",
+	      "(July 7, 2013)",
+	      ["968-1937785499", "1937785491"]
+	    )
+	    @libro2 = Bibliografia::Referencia.new(
+        ["Scott Chacon"], 
+        "Pro Git 2009th Edition",
+        "Pro",
+	      "Apress",
+	      "2009 edition" ,
+	      "August 27, 2009",
+	      ["968-1430218333", "1430218339"]
+	    ) 
       @lista = Bibliografia::Lista_enlazada.new
     end 
     
     it "Se extrae el primer elemento de la lista" do
-      @lista.insertar_lista_principio(@libro)
-      expect(@lista.principio.referencia).to eq(@libro)
+      @lista.insertar_lista_principio(@libro1)
+      expect(@lista.principio.referencia).to eq(@libro1)
       @lista.extraer_lista_principio
     end
     
-    # it "Se puede insertar un elemento" do
-    #   @lista.insertar_lista_final(@libro1)
-    #   #expect(@lista.principio).to eq(@libro)
-    # end
+    it "Se puede insertar un elemento" do
+      @lista.insertar_lista_principio(@libro1)
+      expect(@lista.principio.referencia).to eq(@libro1)
+    end
     
-    # it "Se pueden insertar varios elementos" do
-    #   @lista.insertar_lista_principio(@nodo1)
-    #   expect(@lista.principio).to eq(@nodo1)
-    #   @lista.insertar_lista_principio(@nodo2)
-    #   expect(@lista.principio).to eq(@nodo2)
-    # end
+    it "Se pueden insertar varios elementos" do
+      @lista.insertar_lista_principio(@libro1)
+      expect(@lista.principio.referencia).to eq(@libro1)
+      @lista.insertar_lista_principio(@libro2)
+      expect(@lista.principio.referencia).to eq(@libro2)
+    end
     
-    # it "Debe existir una lista con su cabeza" do
-    #   @lista.insertar_lista_principio(@nodo1)
-    #   expect(@lista.principio).to eq(@nodo1)
-    # end 
+    it "Debe existir una lista con su cabeza" do
+      @lista.insertar_lista_principio(@libro1)
+      expect(@lista.principio.referencia).to eq(@libro1)
+    end 
   end   
 end
