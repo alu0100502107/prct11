@@ -116,12 +116,12 @@ describe Bibliografia do
       @lista.extraer_lista_principio
     end
     
-    it "Se puede insertar un elemento" do
+    it "Se puede insertar un elemento por el principio" do
       @lista.insertar_lista_principio(@libro1)
       expect(@lista.principio.referencia).to eq(@libro1)
     end
     
-    it "Se pueden insertar varios elementos" do
+    it "Se pueden insertar varios elementos por el principio" do
       @lista.insertar_lista_principio(@libro1)
       expect(@lista.principio.referencia).to eq(@libro1)
       @lista.insertar_lista_principio(@libro2)
@@ -132,5 +132,23 @@ describe Bibliografia do
       @lista.insertar_lista_principio(@libro1)
       expect(@lista.principio.referencia).to eq(@libro1)
     end 
+    
+    it "Se extrae el último elemento de la lista" do
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.extraer_lista_final
+    end
+    
+    it "Se puede insertar un elemento por el final" do
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+    end
+    
+    it "Se pueden insertar varios elementos por el final" do
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+    end
   end   
 end
