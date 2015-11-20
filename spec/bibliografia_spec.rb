@@ -181,5 +181,9 @@ describe Bibliografia do
       expect(@libro3).is_a?Bibliografia::Referencia
     end
     
+    it "Es una instancia de Libro" do
+      expect(@libro3).instance_of?Bibliografia::Libro
+    end
+    
   end # context
 end
