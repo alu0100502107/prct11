@@ -150,5 +150,13 @@ describe Bibliografia do
       @lista.insertar_lista_final(@libro1)
       expect(@lista.final.referencia).to eq(@libro1)
     end
+    
+    it "Se inserta por el final de la lista y se extrae por el principio de la lista" do
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_principio(@libro1)
+      expect(@lista.principio.referencia).to eq(@libro1)
+      @lista.extraer_lista_principio.should eq(@libro1)
+    end
   end   
 end
