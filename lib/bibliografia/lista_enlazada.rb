@@ -55,5 +55,34 @@ module Bibliografia
             return ref
             end
         end
+        
+        #Insertar nodo en la lista por el final
+        def insertar_lista_final(referencia)
+            nodo = Nodo.new(referencia, nil, nil)
+            if (es_primero?)    
+                @principio = nodo
+                @final = nodo
+            else
+                nodo.anterior = @final
+                @final.siguiente = nodo
+                @final = nodo
+            end
+        end
+        
+        #Extraer nodo de la lista por el final
+        def extraer_lista_final
+            if (es_primero?)
+                return false
+            else 
+                ref = @final.referencia
+                @final = @final.anterior
+                if (!es_primero?)
+                    @final.siguiente = nil
+                else 
+                    @principio = nil
+                end
+            return ref
+            end
+        end
     end
 end
