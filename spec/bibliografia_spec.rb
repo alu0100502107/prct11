@@ -173,8 +173,12 @@ describe Bibliografia do
 	    ) 
     end
     
-    it "Es una instancia de Libro" do
+    it "Es un Libro" do
       expect(@libro3).is_a?Bibliografia::Libro
+    end
+    
+    it "Es una Referencia" do
+      expect(@libro3).is_a?Bibliografia::Referencia
     end
     
   end # context
