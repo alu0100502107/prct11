@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["alu0100502107"]
   spec.email         = ["alu0100502107@ull.edu.es"]
 
-  spec.summary       = %q{Práctica 8 de LPP.}
+  spec.summary       = %q{Práctica 9 de LPP.}
   spec.description   = %q{Referencias en una Bibliografía}
   spec.homepage      = "https://bitbucket.org/alu0100502107/prct08"
   spec.license       = "MIT"
