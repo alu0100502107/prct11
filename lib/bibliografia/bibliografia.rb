@@ -3,6 +3,7 @@ module Bibliografia
 
   # Clase Referencia para gestionar las de una Bibliografía
   class Referencia
+    include Comparable
     # Getters + Setters
     attr_accessor :autores, :titulo, :serie, :editorial, :num_edicion, :fecha_publicacion, :num_isbns
 
@@ -43,6 +44,10 @@ module Bibliografia
     # Para método puts
     def to_s
       "#{print_autor}\n#{titulo}\n#{serie}\n#{editorial}; #{num_edicion} #{fecha_publicacion}\n#{print_isbn}"
+    end
+    
+    def <=>(other)
+      @fecha_publicacion <=> other.fecha_publicacion
     end
   end
   
