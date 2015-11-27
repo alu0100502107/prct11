@@ -74,6 +74,7 @@ module Bibliografia
             ref
         end
         
+        # Para hacer la clase enumerable
         def each
             nodo  = @principio
             while (nodo != nil)
