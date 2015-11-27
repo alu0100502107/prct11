@@ -256,8 +256,81 @@ describe Bibliografia do
   #   end
   # end # context
   
-  context "Referencias bibliográficas comparables" do
-    before :each do
+  # context "Referencias bibliográficas comparables" do
+  #   before :each do
+  #     @libro1 = Bibliografia::Referencia.new(
+  #       ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
+  #       "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
+  #       "(The Facets of Ruby)",
+	 #     "Pragmatic Bookshelf",
+	 #     "4 edition",
+	 #     "(July 7, 2013)",
+	 #     ["968-1937785499", "1937785491"]
+	 #   )
+	 #   @libro2  = Bibliografia::Referencia.new(
+  #       ["Scott Chacon"], 
+  #       "Pro Git 2009th Edition",
+  #       "Pro",
+	 #     "Apress",
+	 #     "2009 edition" ,
+	 #     "August 27, 2009",
+	 #     ["968-1430218333", "1430218339"]
+	 #   ) 
+	 #   @articulo_revista = Bibliografia::Articulo_revista.new(
+  #       ["David Chelimsky", "Dave Astels", " Bryan Helmkamp", "Dan North", "Zach Dennis", "Aslak Hellesoy"], 
+  #       "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends",
+  #       "The Facets of Ruby",
+	 #     "Pragmatic Bookshelf",
+	 #     "1 edition" ,
+	 #     "December 25, 2010",
+	 #     ["1934356379", "978-1934356371"],
+	 #     ""
+	 #   )
+	 #    @articulo_periodico = Bibliografia::Articulo_periodico.new(
+  #       ["Richard E. Silverman"], 
+  #       "Git Pocket Guide",
+  #       "Serie",
+	 #     "O’Reilly Media",
+	 #     "1 edition" ,
+	 #     "August 2, 2013",
+	 #     "",
+	 #     "8"
+	 #   )
+  #   @documento_electronico = Bibliografia::Documento_electronico.new(
+  #       ["Richard E. Silverman"], 
+  #       "Git Pocket Guide",
+  #       "Serie",
+	 #     "O’Reilly Media",
+	 #     "1 edition" ,
+	 #     "August 2, 2013",
+	 #     "",
+	 #     "https://www.oreillymedia.es"
+	 #   )
+  #   end 
+    
+  #   it "Comprobando que la fecha de publicación del libro1 es < que la del libro2" do
+  #     expect(@libro1 < @libro2).to eq(true)
+  #   end
+    
+  #   it "Comprobando que la fecha de publicación del artículo de un periodico es = que la del documento electrónico" do
+  #     expect(@articulo_periodico == @documento_electronico).to eq(true)
+  #   end
+    
+  #   it "Comprobando que la fecha de publicación del artículo de un periodico es > que la del libro1" do
+  #     expect(@articulo_periodico > @libro1).to eq(true)
+  #   end
+    
+  #   it "Comprobando que la fecha de publicación del libro2 es <= que la de un artículo de una revista" do
+  #     expect(@libro2 <= @articulo_revista).to eq(true)
+  #   end
+    
+  #   it "Comprobando que la fecha de publicación del artículo de un periodico es >= que la del documento electrónico" do
+  #     expect(@articulo_periodico >= @documento_electronico).to eq(true)
+  #   end
+  # end # context
+  
+  context "Listas doblemente enlazadas enumerables" do
+     before :each do
       @libro1 = Bibliografia::Referencia.new(
         ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
         "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
@@ -267,7 +340,7 @@ describe Bibliografia do
 	      "(July 7, 2013)",
 	      ["968-1937785499", "1937785491"]
 	    )
-	    @libro2  = Bibliografia::Referencia.new(
+	    @libro2 = Bibliografia::Referencia.new(
         ["Scott Chacon"], 
         "Pro Git 2009th Edition",
         "Pro",
@@ -275,57 +348,115 @@ describe Bibliografia do
 	      "2009 edition" ,
 	      "August 27, 2009",
 	      ["968-1430218333", "1430218339"]
-	    ) 
-	    @articulo_revista = Bibliografia::Articulo_revista.new(
+	    )    
+	    @libro3 = Bibliografia::Referencia.new(
+        ["David Flanagan", "Yukihiro Matsumoto"], 
+        "The Ruby Programming Language",
+        "Serie",
+	      "O’Reilly Media",
+	      "1 edition" ,
+	      "February 4, 2008",
+	      ["0596516177", "978-0596516178"]
+	    )    
+	    @libro4 = Bibliografia::Referencia.new(
         ["David Chelimsky", "Dave Astels", " Bryan Helmkamp", "Dan North", "Zach Dennis", "Aslak Hellesoy"], 
         "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends",
         "The Facets of Ruby",
 	      "Pragmatic Bookshelf",
 	      "1 edition" ,
 	      "December 25, 2010",
-	      ["1934356379", "978-1934356371"],
-	      ""
+	      ["1934356379", "978-1934356371"]
 	    )
-	     @articulo_periodico = Bibliografia::Articulo_periodico.new(
+	    @libro5 = Bibliografia::Referencia.new(
         ["Richard E. Silverman"], 
         "Git Pocket Guide",
         "Serie",
 	      "O’Reilly Media",
 	      "1 edition" ,
 	      "August 2, 2013",
-	      "",
-	      "8"
+	      ["1449325866", "978-1449325862"]
 	    )
-     @documento_electronico = Bibliografia::Documento_electronico.new(
-        ["Richard E. Silverman"], 
-        "Git Pocket Guide",
-        "Serie",
-	      "O’Reilly Media",
-	      "1 edition" ,
-	      "August 2, 2013",
-	      "",
-	      "https://www.oreillymedia.es"
-	    )
-    end 
-    
-    it "Comprobando que la fecha de publicación del libro1 es < que la del libro2" do
-      expect(@libro1 < @libro2).to eq(true)
-    end
-    
-    it "Comprobando que la fecha de publicación del artículo de un periodico es = que la del documento electrónico" do
-      expect(@articulo_periodico == @documento_electronico).to eq(true)
-    end
-    
-    it "Comprobando que la fecha de publicación del artículo de un periodico es > que la del libro1" do
-      expect(@articulo_periodico > @libro1).to eq(true)
-    end
-    
-    it "Comprobando que la fecha de publicación del libro2 es <= que la de un artículo de una revista" do
-      expect(@libro2 <= @articulo_revista).to eq(true)
-    end
-    
-    it "Comprobando que la fecha de publicación del artículo de un periodico es >= que la del documento electrónico" do
-      expect(@articulo_periodico >= @documento_electronico).to eq(true)
-    end
-  end
-end # context
+	    @lista = Bibliografia::Lista_enlazada.new
+	  end
+	  
+	  it "Comprobando el método max" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro3)
+      expect(@lista.final.referencia).to eq(@libro3)
+      @lista.insertar_lista_final(@libro4)
+      expect(@lista.final.referencia).to eq(@libro4)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.max).to eq(@libro3)
+	  end
+	  
+	  it "Comprobando el método min" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro3)
+      expect(@lista.final.referencia).to eq(@libro3)
+      @lista.insertar_lista_final(@libro4)
+      expect(@lista.final.referencia).to eq(@libro4)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.min).to eq(@libro1)
+	  end
+	  
+	  it "Comprobando el método sort" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro3)
+      expect(@lista.final.referencia).to eq(@libro3)
+      @lista.insertar_lista_final(@libro4)
+      expect(@lista.final.referencia).to eq(@libro4)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.sort).to eq([@libro1, @libro5, @libro2, @libro4, @libro3])
+	  end
+	  
+	  it "Comprobando el método all?" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro3)
+      expect(@lista.final.referencia).to eq(@libro3)
+      @lista.insertar_lista_final(@libro4)
+      expect(@lista.final.referencia).to eq(@libro4)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.all?).to eq(true)
+	  end
+	  
+	  it "Comprobando el método drop" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro3)
+      expect(@lista.final.referencia).to eq(@libro3)
+      @lista.insertar_lista_final(@libro4)
+      expect(@lista.final.referencia).to eq(@libro4)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.drop(2)).to eq([@libro3,@libro4,@libro5])
+	  end
+	  
+	  it "Comprobando el método any?" do
+	    @lista.insertar_lista_final(@libro1)
+      expect(@lista.final.referencia).to eq(@libro1)
+      @lista.insertar_lista_final(@libro2)
+      expect(@lista.final.referencia).to eq(@libro2)
+      @lista.insertar_lista_final(@libro5)
+      expect(@lista.final.referencia).to eq(@libro5)
+      expect(@lista.any?).to eq(true)
+	  end
+  end # context
+end
