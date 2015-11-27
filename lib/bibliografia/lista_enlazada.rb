@@ -10,6 +10,7 @@ module Bibliografia
     end
         
     class Lista_enlazada
+        include Enumerable
        
         #Getter + Setter
         attr_reader :principio, :final
@@ -71,6 +72,14 @@ module Bibliografia
                 @principio = @final
             end
             ref
+        end
+        
+        def each
+            nodo  = @principio
+            while (nodo != nil)
+                yield nodo.referencia
+                nodo = nodo.siguiente
+            end
         end
     end
 end
