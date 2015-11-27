@@ -46,6 +46,7 @@ module Bibliografia
       "#{print_autor}\n#{titulo}\n#{serie}\n#{editorial}; #{num_edicion} #{fecha_publicacion}\n#{print_isbn}"
     end
     
+    # Guerra de las galaxias
     def <=>(other)
       @fecha_publicacion <=> other.fecha_publicacion
     end
