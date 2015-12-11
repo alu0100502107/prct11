@@ -542,6 +542,9 @@ describe Bibliografia do
 	    expect(@lista2.sort).to eq([@articulo_libro,@libro1])
 	  end
 	 
+	  it "Debe de estar separados por '&' si hay varios autores" do
+	    expect(@libro1.print_autor == "Thomas, D & Hunt, A & Fowler, C").to eq(true)
+	  end
 	 
 	
 	 
