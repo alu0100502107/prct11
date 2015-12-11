@@ -20,7 +20,7 @@ module Bibliografia
     
     # Obtener apellido e inicial del nombre 
     def get_autores_apellidos(autor)
-      trozo = autor.split = [" "]
+      trozo = autor.split - [" "]
       nombre, apellido = trozo[0], trozo[1]
       apellido + ", " + nombre[0]
     end
