@@ -501,7 +501,7 @@ describe Bibliografia do
 	      [""],
 	      "El Hola",
 	      "España",
-	      "Español"
+	      "Francés"
 	    )
 	    @articulo_periodico = Bibliografia::Articulo_periodico.new(
         ["Richard E. Silverman"], 
