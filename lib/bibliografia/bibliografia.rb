@@ -5,115 +5,68 @@ module Bibliografia
   class Referencia
     include Comparable
     # Getters 
-    attr_accessor :autores, :apellidos, :titulo, :serie, :editorial, :num_edicion, :dia, :mes, :ano, :num_isbns
+    attr_accessor :autores, :titulo, :serie, :editorial, :num_edicion, :fecha_publicacion, :num_isbns
 
     # Constructor
-    def initialize(autores, apellidos, titulo, serie, editorial, num_edicion, dia, mes, ano, num_isbns)
+    def initialize(autores, titulo, serie, editorial, num_edicion, fecha_publicacion, num_isbns)
       @autores = autores
-      @apellidos = apellidos
-      @titulo = titulo
-      @serie = serie
+      titulo == "" ? @titulo = titulo : @titulo = titulo.split.map(&:capitalize).join(' ')
+      serie == "" ? @serie = serie : @serie = '(' + serie[1..-1].split.map(&:capitalize).join(' ')
       @editorial = editorial
       @num_edicion = num_edicion
-      @dia = dia
-      @mes = mes
-      @ano = ano
+      @fecha_publicacion = fecha_publicacion
       @num_isbns = num_isbns
     end
     
-    # Obtener autor/es y apellido/s
-    def get_autores_apellidos
-      tamano = @autores.lenght
-      i = 0
-      while i < (tamano - 1)
-        cadena = "#{cadena}"+"#{@autores[i]} #{@apellidos[i]}, "
-        i = i+1
+    # Obtener apellido e inicial del nombre 
+    def get_autores_apellidos(autor)
+      trozo = autor.split = [" "]
+      nombre, apellido = trozo[0], trozo[1]
+      apellido + ", " + nombre[0]
+    end
+ 
+    # Muestra lista de autores
+    def print_autor
+      count = 0
+      lista = ""
+      autores.each do |autor|
+        count += 1
+        lista += get_autores_apellidos(autor)
+        lista += " & " if count != autores.size
       end
-      cadena = "#{cadena}"+"#{@autores[i]} #{@apellidos[i]}"
+      lista
     end
-    
-    # Obtener título
-    def get_titulo 
-      "#{@titulo}"
+
+    # Muestra lista de isbn
+    def print_isbn
+      lista = ""
+      num_isbns.each do |isbn|
+        count = 0
+        lista += "ISBN-" + isbn.delete('^0-9').size.to_s + ": " + isbn
+        lista += "\n\t" if count != num_isbns.size
+      end
+      lista
     end
-    
-    # Obtener serie
-    def get_serie 
-      "#{@serie}"
-    end
-    
-    # Obtener editorial
-    def get_editorial 
-      "#{@editorial}"
-    end
-    
-    # Obtener número de edición
-    def get_num_edicion 
-      "#{@num_edicion}"
-    end
-    
-    # Obtener fecha de publicación con mes y año
-    def get_fecha_publicacion 
-      "#{@dia}, #{@mes}, #{@ano}"
-    end
-    
-    # Obtener número de isbn/s
-    def get_num_isbns
-      tamano = @num_isbns.length
-        
-      a = @num_isbns[0].length
-        
-      cadena = "ISBN-#{a}: "
-        if a > 10
-            cadena = "#{cadena}"+"#{@num_isbns[0][-a..-11]}"+"-"+"#{@num_isbns[0][-10..-1]}"
-        else
-            cadena = "#{cadena}"+"#{@num_isbns[0]}"
-        end
-        
-        i = 1
-        while i < tamano
-            a = @num_isbns[i].length
-            
-            cadena = "#{cadena}"+"\nISBN-#{a}: "
-            if a > 10
-                cadena = "#{cadena}"+"#{@num_isbns[i][-a..-11]}"+"-"+"#{@num_isbns[i][-10..-1]}"
-            else
-                cadena = "#{cadena}"+"#{@num_isbns[i]}"
-            end
-            i = i+1
-        end
-        cadena
-    end
-    
+
     # Para método puts
     def to_s
-      cadena = "#{get_autores_apellidos}.\n"
-      cadena = "#{cadena}"+"#{get_titulo}\n"
-      cadena = "#{cadena}"+"(#{get_serie})\n"
-      cadena = "#{cadena}"+"#{get_editorial}; #{get_num_edicion} edicion (#{get_fecha_publicacion})\n"
-      cadena = "#{cadena}"+"#{get_num_isbns}" 
+      "#{print_autor}\n\t#{titulo}\n\t#{serie}\n\t#{editorial}; #{num_edicion} #{fecha_publicacion}\n\t#{print_isbn}"
     end
     
     # Guerra de las galaxias
     def <=>(other)
-      return nil unless other.is_a? Referencia
-        if (@apellidos != other.apellidos)
-            @apellidos <=> other.apellidos
+        mi_fecha = @fecha_publicacion[/.*, ([^\)]*)/,1]
+        otra_fecha = other.fecha_publicacion[/.*, ([^\)]*)/,1]
+        if (@autores != other.autores)
+            @autores <=> other.autores
         else
-            if (@ano != other.ano)
-                @ano <=> other.ano
-            else
-               @titulo <=> other.titulo
-            end
+          if (mi_fecha != otra_fecha)
+          mi_fecha <=> otra_fecha
+          else
+             @titulo <=> other.titulo
+          end
         end
     end
-    
-    # Igualar títulos
-    def ==(other)
-      return nil unless other.is_a? Referencia
-        @titulo == other.titulo
-    end
-  
   end
   
   class Libro < Referencia
