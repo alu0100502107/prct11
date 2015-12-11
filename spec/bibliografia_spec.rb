@@ -463,86 +463,90 @@ describe Bibliografia do
   context "Cita" do
     before :all do
       @libro1 = Bibliografia::Referencia.new(
-        ["Dave", "Andy",  "Chad"],
-        ["Thomas", "Hunt", "Fowler"], 
+        ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
         "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
         "(The Facets of Ruby)",
 	      "Pragmatic Bookshelf",
 	      "4 edition",
-	      "7",
-	      "July", 
-	      "2013",
+	      "(July 7, 2013)",
 	      ["968-1937785499", "1937785491"]
 	    )
-	    @libro2  = Bibliografia::Referencia.new(
-        ["Scott"],
-        ["Chacon"], 
+	    @libro2 = Bibliografia::Referencia.new(
+        ["Dave Thomas"], 
         "Pro Git 2009th Edition",
         "Pro",
 	      "Apress",
-	      "2009 edition",
-	      "27",
-	      "August", 
-	      "2009",
+	      "2009 edition" ,
+	      "August 27, 2009",
 	      ["968-1430218333", "1430218339"]
-	    ) 
-	     @articulo_libro = Bibliografia::Articulo_libro.new(
-        ["Dave", "Andy",  "Chad"],
-        ["Thomas", "Hunt", "Fowler"], 
+	    )  
+	   @articulo_libro = Bibliografia::Articulo_libro.new(
+        ["Dave Thomas", "Andy Hunt", "Chad Fowler"], 
         "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers' Guide",
         "(The Facets of Ruby)",
 	      "Pragmatic Bookshelf",
 	      "4 edition",
-	      "7",
-	      "July", 
-	      "2013",
+	      "(July 7, 2012)",
 	      ["968-1937785499", "1937785491"],
 	      "Londres",
 	      "Inglés"
 	    )
 	    @articulo_revista = Bibliografia::Articulo_revista.new(
-        ["David", "Dave", "Bryan", "Dan", "Zach", "Aslak"],
-        ["Chelimsky", "Astels", "Helmkamp", "North", "Dennis", "Hellesoy"],     
-        "",
+        ["David Chelimsky", "Dave Astels", " Bryan Helmkamp", "Dan North", "Zach Dennis", "Aslak Hellesoy"], 
+        "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends",
         "",
 	      "",
 	      "",
-	      "25",
-	      "December",
-	      "2010",
+	      "December 25, 2010",
 	      [""],
 	      "El Hola",
 	      "España",
 	      "Español"
 	    )
-	     @articulo_periodico = Bibliografia::Articulo_periodico.new(
-        ["Richard E."],
-        ["Silverman"], 
+	    @articulo_periodico = Bibliografia::Articulo_periodico.new(
+        ["Richard E. Silverman"], 
         "Git Pocket Guide",
         "",
 	      "",
 	      "",
-	      "2",
-	      "August",
-	      "2013",
+	      "August 2, 2013",
+	      [""],
 	      "Diario de Avisos",
 	      "120"
 	    )
-    @documento_electronico = Bibliografia::Documento_electronico.new(
-        ["Richard E."],
-        ["Silverman"], 
+	     @documento_electronico = Bibliografia::Documento_electronico.new(
+        ["Richard E. Silverman"], 
         "Git Pocket Guide",
         "",
 	      "",
-	      "1 edition",
-	      "2",
-	      "August", 
-	      "2013",
+	      "1 edition" ,
+	      "August 2, 2013",
+	      [""],
 	      "Internet",
 	      "Italia",
 	      "https://www.oreillymedia.es"
 	    )
-    end 
+	    @lista1 = Bibliografia::Lista_enlazada.new
+	    @lista2 = Bibliografia::Lista_enlazada.new
+	    @lista1.insertar_lista_final(@libro1)
+	    @lista1.insertar_lista_final(@libro2)
+	    @lista2.insertar_lista_final(@libro1)
+	    @lista2.insertar_lista_final(@articulo_libro)
+	  end 
+	  
+	  it "Debe ordenarse de manera que aparezca primero el libro que tiene un solo autor" do
+	    expect(@lista1.sort).to eq([@libro2,@libro1])
+	  end
+	 
+	  it "Debe ordenarse de menor a mayor año al ser los mismos autores" do
+	    expect(@lista2.sort).to eq([@articulo_libro,@libro1])
+	  end
+	 
+	 
+	
+	 
+		
+		
   end # context
   
 end
