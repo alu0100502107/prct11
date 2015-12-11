@@ -516,7 +516,7 @@ describe Bibliografia do
 	    )
 	     @documento_electronico = Bibliografia::Documento_electronico.new(
         ["Richard E. Silverman"], 
-        "Git Pocket Guide",
+        "git pocket guide",
         "",
 	      "",
 	      "1 edition" ,
@@ -545,11 +545,10 @@ describe Bibliografia do
 	  it "Debe de estar separados por '&' si hay varios autores" do
 	    expect(@libro1.print_autor == "Thomas, D & Hunt, A & Fowler, C").to eq(true)
 	  end
-	 
-	
-	 
-		
-		
+	  
+	  it "Debe de ponerte en mayúscula si la encuentra en minúscula la primera letra de cada palabra en el título" do
+	    expect(@documento_electronico.titulo == "Git Pocket Guide"). to eq(true)
+	   end
   end # context
   
 end
