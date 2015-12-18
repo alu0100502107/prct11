@@ -45,17 +45,18 @@ module Bibliografia
 
   class Libro < Referencia
     # Getters + Setters 
-    attr_accessor :ediciones, :volumenes, :lugares_publicacion, :editoriales
+    attr_accessor :num_ediciones, :volumenes, :lugares_publicacion, :editoriales, :num_isbns
      
     # Constructor 
     def initialize(titulo, &bloque)
       self.titulo = titulo
       self.autores = []
       self.fechas_publicacion = []
-      self.ediciones = []
+      self.num_ediciones = []
       self.volumenes = []
       self.lugares_publicacion = []
       self.editoriales = []
+      self.num_isbns = []
     
       instance_eval &bloque if block_given?
     end
@@ -73,9 +74,9 @@ module Bibliografia
     end
     
     # Introduce un string con la edición de un libro  
-    def edicion(numero, options = {})
-      edicion = numero
-      ediciones << edicion
+    def num_edicion(numero, options = {})
+      num_edicion = numero
+      num_ediciones << num_edicion
     end
     
     # Introduce un string con el volumen de un libro  
@@ -96,29 +97,99 @@ module Bibliografia
       editoriales << editorial
     end
     
+    # Introduce un string con el isbn de un libro  
+    def num_isbn(numero, options = {})
+      num_isbn = numero
+      num_isbns << num_isbn
+    end
+    
     # Para método puts 
     def to_s()
       salida = "#{titulo},"
       salida << " #{autores.join(', ')}, "
       salida << "(#{fechas_publicacion.join(', ')}), "
-      salida << "(#{ediciones.join(', ')}), "
+      salida << "(#{num_ediciones.join(', ')}), "
       salida << "(#{volumenes.join(', ')}), "
       salida << "#{lugares_publicacion.join(', ')}, "
-      salida << "#{editoriales.join(', ')} "
+      salida << "#{editoriales.join(', ')}, "
+      salida << "#{num_isbns.join(', ')} "
       return salida
     end
   end     
 
   # class Articulo_libro < Referencia
   #   # Getter + Setter
-  #   attr_accessor :lugar_publicacion, :sinopsis
+  #   attr_accessor :ediciones, :num_ediciones, :volumenes, :titulos2, :num_paginas, :lugares_publicacion, :editoriales
     
   #   # Constructor
-  #   def initialize(*parametros, lugar_publicacion, sinopsis)
-  #       super(*parametros)
-  #       @lugar_publicacion = lugar_publicacion
-  #       @sinopsis = sinopsis
+  #   def initialize(titulo ,&bloque)
+  #     self.titulo = titulo
+  #     self.autores = []
+  #     self.fechas_publicacion = []   
+  #     self.titulos2 = []
+  #     self.num_paginas = []
+  #     self.ediciones = []
+  #     self.volumenes = []
+  #     self.lugares_publicacion = []
+  #     self.editoriales = []
+    
+  #     instance_eval &bloque if block_given?
   #   end
+    
+  #   def autor(nombre, options = {})
+  #     autor = nombre
+  #     autores << autor
+  #   end
+    
+  #   def fecha_publicacion(formato, options = {})
+  #     fecha_publicacion = formato
+  #     fechas_publicacion <<  fecha_publicacion
+  #   end
+    
+  #   def titulo2(nombre, options = {})
+  #     titulo2 = nombre
+  #     titulos2 << titulo2
+  #   end
+     
+  #   def edition(name, options = {})
+  #         edition = name
+  #         edicion << edition
+  #   end
+     
+    
+     
+     
+     
+  #   def volume(name, options = {})
+  #         volume = name
+  #         volumen << volume
+  #   end
+     
+  #   def place(name, options = {})
+  #         place = name
+  #         lpublicacion << place
+  #   end
+     
+  #   def editor(name, options = {})
+  #         editor = name
+  #         edito << editor
+  #   end
+     
+  #   def to_s()
+          
+  #         out = "#{titulo}"
+  #         out << " #{autor.join(', ')} "
+  #         out << "(#{fecha.join(', ')}) "
+  #         out << " #{titulob.join(', ')} "
+  #         out << " #{pags.join(', ')} "
+  #         out << "(#{edicion.join(', ')}) "
+  #         out << "(#{volumen.join(', ')}) "
+  #         out << "#{lpublicacion.join(', ')} "
+  #         out << "#{edito.join(', ')} "
+          
+  #         out
+  #   end
+     
   # end
   
   # class Articulo_revista < Referencia
