@@ -157,6 +157,48 @@ describe Bibliografia do
         puts articulo_periodico
       end
     end # context Artículo de un Periodico
+    
+    context "Documento electrónico" do
+      documento_electronico = Bibliografia::Documento_electronico.new("Ola de Calor") do
+        autor "Richard Castle" 
+        fecha_publicacion "2011"
+        formato "EPUB - DRM"
+        editorial "SUMA"
+        idioma "Castellano"
+      end
+     
+      it "Debe existir un documento electrónico con título" do
+        expect(documento_electronico.titulo).to eq("Ola de Calor")
+      end
+      
+      it "Debe existir un documento electrónico con autor" do
+        expect(documento_electronico.autores).to eq(["Richard Castle"])
+      end
+      
+      it "Debe existir un documento electrónico con fecha de publicación" do
+        expect(documento_electronico.fechas_publicacion).to eq(["2011"])
+      end
+            
+      it "Debe existir un documento electrónico con formato" do
+        expect(documento_electronico.formatos).to eq(["EPUB - DRM"])
+      end
+      
+      it "Debe existir un documento electrónico con editorial" do
+        expect(documento_electronico.editoriales).to eq(["SUMA"])
+      end
+      
+      it "Debe existir un documento electrónico con idioma" do
+        expect(documento_electronico.idiomas).to eq(["Castellano"])
+      end
+    
+      it "Debe crearse un documento electrónico con lenguaje de dominio específico" do
+        expect(documento_electronico.kind_of?Bibliografia::Documento_electronico).to eq(true)
+      end
+      
+      it "Debe mostrarse el documento electrónico" do
+        puts documento_electronico
+      end
+    end # context Documento Electrónico
   end # context Lenguajes de Dominio Específico
 end # describe Bibliografia
 
