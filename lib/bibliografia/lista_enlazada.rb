@@ -8,7 +8,8 @@ module Bibliografia
             @referencia.to_s
         end
     end
-        
+    
+    # Clase Lista enlazada por ambos lados    
     class Lista_enlazada
         include Enumerable
        
