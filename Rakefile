@@ -5,3 +5,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
 
+desc "Documentación RDOC"
+task :rdoc do
+  sh "rdoc"
+end
+
