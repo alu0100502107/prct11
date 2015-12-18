@@ -265,6 +265,63 @@ module Bibliografia
     end
   end     
   
+   class Documento_electronico < Referencia
+    # Getters + Setters 
+    attr_accessor :formatos, :editoriales, :idiomas
+     
+    # Constructor 
+    def initialize(titulo, &bloque)
+      self.titulo = titulo
+      self.autores = []
+      self.fechas_publicacion = []
+      self.formatos = []
+      self.editoriales = []
+      self.idiomas = []
+    
+      instance_eval &bloque if block_given?
+    end
+    
+    # Introduce un string con el autor de un documento electrónico
+    def autor(nombre, options = {})
+      autor = nombre
+      autores << autor
+    end
+    
+    # Introduce un string con la fecha de publicación de un documento electrónico
+    def fecha_publicacion(ano, options = {})
+      fecha_publicacion = ano
+      fechas_publicacion << fecha_publicacion
+    end
+    
+    # Introduce un string con el formato de un documento electrónico
+    def formato(tipo, options = {})
+      formato = tipo
+      formatos << formato
+    end
+    
+    # Introduce un string con la editorial de un documento electrónico
+    def editorial(nombre, options = {})
+      editorial = nombre
+      editoriales << editorial
+    end
+    
+    # Introduce un string con el idioma de un documento electrónico
+    def idioma(pais, options = {})
+      idioma = pais
+      idiomas << idioma
+    end
+    
+    # Para método puts 
+    def to_s()
+      salida = "#{titulo},"
+      salida << " #{autores.join(', ')}, "
+      salida << "(#{fechas_publicacion.join(', ')}), "
+      salida << "#{formatos.join(', ')}, "
+      salida << "#{editoriales.join(', ')}, "
+      salida << "#{idiomas.join(', ')} "
+      return salida
+    end
+  end     
 end
 
 
