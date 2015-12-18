@@ -1,7 +1,7 @@
-# Módulo Bibliográfico
+# Módulo Bibliografía
 module Bibliografia
 
-  # Clase Referencia para gestionar las de una Bibliografía
+  # Clase Referencia para gestionar una Bibliografía
   class Referencia
     include Comparable
     
@@ -43,6 +43,7 @@ module Bibliografia
     end
   end   
 
+  # Clase Libro hija de Rerefencia
   class Libro < Referencia
     # Getters + Setters 
     attr_accessor :num_ediciones, :volumenes, :lugares_publicacion, :editoriales, :num_isbns
@@ -117,7 +118,8 @@ module Bibliografia
     end
   end # Libro    
 
- class Articulo_libro < Referencia
+  # Clase Articulo_Libro hijo de Rerefencia
+  class Articulo_libro < Referencia
     # Getters + Setters 
     attr_accessor :num_ediciones, :volumenes, :lugares_publicacion, :editoriales, :num_isbns, :nombres_libro, :num_paginas
      
@@ -207,6 +209,7 @@ module Bibliografia
     end
   end # Articulo_libro
   
+  # Clase Articulo_periodico hijo de Rerefencia
   class Articulo_periodico < Referencia
     # Getters + Setters 
     attr_accessor :lugares_publicacion, :nombres_periodico, :num_paginas
@@ -265,7 +268,8 @@ module Bibliografia
     end
   end     
   
-   class Documento_electronico < Referencia
+  # Clase Documento electrónico hijo de Rerefencia
+  class Documento_electronico < Referencia
     # Getters + Setters 
     attr_accessor :formatos, :editoriales, :idiomas
      
@@ -321,7 +325,7 @@ module Bibliografia
       salida << "#{idiomas.join(', ')} "
       return salida
     end
-  end     
-end
+  end # Clase Documento Electrónico    
+end # Módulo Bibliografia
 
 
