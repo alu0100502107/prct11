@@ -6,10 +6,11 @@ describe Bibliografia do
       libro = Bibliografia::Libro.new("Acuérdate de mí") do
         autor "Mary Higgins Clark" 
         fecha_publicacion "1994"
-        edicion "Cuarta"
+        num_edicion "Cuarta"
         volumen "1"
         lugar_publicacion"Estados Unidos"
         editorial "Simon & Schuster"
+        num_isbn "37785491"
       end
      
       it "Debe existir el libro con título" do
@@ -25,7 +26,7 @@ describe Bibliografia do
       end
         
       it "Debe existir el libro con edición" do  
-        expect(libro.ediciones).to eq(["Cuarta"])
+        expect(libro.num_ediciones).to eq(["Cuarta"])
       end
       
       it "Debe existir el libro con volumen" do
@@ -38,6 +39,10 @@ describe Bibliografia do
       
       it "Debe existir el libro con editorial" do
         expect(libro.editoriales).to eq(["Simon & Schuster"])
+      end
+      
+      it "Debe existir el libro con numéro de isbn" do
+        expect(libro.num_isbns).to eq(["37785491"])
       end
     
       it "Debe crearse un libro con lenguaje de dominio específico" do
