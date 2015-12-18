@@ -4,127 +4,160 @@ module Bibliografia
   # Clase Referencia para gestionar las de una Bibliografía
   class Referencia
     include Comparable
-    # Getters 
-    attr_accessor :autores, :titulo, :serie, :editorial, :num_edicion, :fecha_publicacion, :num_isbns
-
+    
+    # Getters + Setters
+    attr_accessor :titulo, :autores, :fechas_publicacion
+     
     # Constructor
-    def initialize(autores, titulo, serie, editorial, num_edicion, fecha_publicacion, num_isbns)
-      @autores = autores
-      titulo == "" ? @titulo = titulo : @titulo = titulo.split.map(&:capitalize).join(' ')
-      serie == "" ? @serie = serie : @serie = '(' + serie[1..-1].split.map(&:capitalize).join(' ')
-      @editorial = editorial
-      @num_edicion = num_edicion
-      @fecha_publicacion = fecha_publicacion
-      @num_isbns = num_isbns
+    def initialize(titulo, &bloque)
+      self.titulo = titulo
+      self.autores = []
+      self.fechas_publicacion = []
+     
+      instance_eval &block if block_given?
     end
     
-    # Obtener apellido e inicial del nombre 
-    def get_autores_apellidos(autor)
-      trozo = autor.split - [" "]
-      nombre, apellido = trozo[0], trozo[1]
-      apellido + ", " + nombre[0]
-    end
- 
-    # Muestra lista de autores
-    def print_autor
-      count = 0
-      lista = ""
-      autores.each do |autor|
-        count += 1
-        lista += get_autores_apellidos(autor)
-        lista += " & " if count != autores.size
-      end
-      lista
-    end
-
-    # Muestra lista de isbn
-    def print_isbn
-      lista = ""
-      num_isbns.each do |isbn|
-        count = 0
-        lista += "ISBN-" + isbn.delete('^0-9').size.to_s + ": " + isbn
-        lista += "\n\t" if count != num_isbns.size
-      end
-      lista
-    end
-
-    # Para método puts
-    def to_s
-      "#{print_autor}\n\t#{titulo}\n\t#{serie}\n\t#{editorial}; #{num_edicion} #{fecha_publicacion}\n\t#{print_isbn}"
+    # Introduce un string con el autor de la referencia
+    def autor(nombre, options = {})
+      autor = nombre
+      autores << autor
     end
     
-    # Guerra de las galaxias
+    # Introduce un string con la fecha de publicación de la referencia 
+    def fecha_publicacion(formato, options = {})
+      fecha_publicacion = formato
+      fechas_publicacion << fecha_publicacion
+    end
+    
+    # Guerra de las galaxias 
     def <=>(other)
-        mi_fecha = @fecha_publicacion[/.*, ([^\)]*)/,1]
-        otra_fecha = other.fecha_publicacion[/.*, ([^\)]*)/,1]
-        if (@autores != other.autores)
-            @autores <=> other.autores
+      if((@autores <=> other.autores) == 0)
+        if((@fechas_publicacion <=> other.fechas_publicacion) == 0)
+          @titulos <=> other.titulos
         else
-          if (mi_fecha != otra_fecha)
-          mi_fecha <=> otra_fecha
-          else
-             @titulo <=> other.titulo
-          end
+          @fechas_publicacion <=> other.fechas_publicacion
         end
+      else
+        @autores <=> other.autores
+      end
     end
-  end
-  
+  end   
+
   class Libro < Referencia
-    #Constructor
-    def initialize(*parametros)
-      super
-    end
-  end # clase
-  
-  class Articulo_libro < Referencia
-    # Getter + Setter
-    attr_accessor :lugar_publicacion, :sinopsis
+    # Getters + Setters 
+    attr_accessor :ediciones, :volumenes, :lugares_publicacion, :editoriales
+     
+    # Constructor 
+    def initialize(titulo, &bloque)
+      self.titulo = titulo
+      self.autores = []
+      self.fechas_publicacion = []
+      self.ediciones = []
+      self.volumenes = []
+      self.lugares_publicacion = []
+      self.editoriales = []
     
-    # Constructor
-    def initialize(*parametros, lugar_publicacion, sinopsis)
-        super(*parametros)
-        @lugar_publicacion = lugar_publicacion
-        @sinopsis = sinopsis
+      instance_eval &bloque if block_given?
     end
-  end
-  
-  class Articulo_revista < Referencia
-    # Getter + Setter
-    attr_accessor :nombre_revista, :lugar_publicacion, :idioma
     
-    # Constructor
-    def initialize(*parametros, nombre_revista, lugar_publicacion, idioma)
-        super(*parametros)
-        @nombre_revista = nombre_revista
-        @lugar_publicacion = lugar_publicacion
-        @idioma = idioma
+    # Introduce un string con el autor de un libro 
+    def autor(nombre, options = {})
+      autor = nombre
+      autores << autor
     end
-  end
-  
-  class Articulo_periodico < Referencia
-    # Getter + Setter
-    attr_accessor :nombre_periodico, :num_paginas
     
-    # Constructor
-    def initialize(*parametros, nombre_periodico, num_paginas)
-        super(*parametros)
-        @nombre_periodico = nombre_periodico
-        @num_paginas = num_paginas
+    # Introduce un string con la fecha de publicación de un libro 
+    def fecha_publicacion(ano, options = {})
+      fecha_publicacion = ano
+      fechas_publicacion << fecha_publicacion
     end
-  end
-  
-  class Documento_electronico < Referencia
-    # Getter + Setter
-    attr_accessor :medio, :lugar_publicacion, :url
     
-    # Constructor
-    def initialize(*parametros, medio, lugar_publicacion, url)
-        super(*parametros)
-        @medio = medio
-        @lugar_publicacion = lugar_publicacion
-        @url = url
+    # Introduce un string con la edición de un libro  
+    def edicion(numero, options = {})
+      edicion = numero
+      ediciones << edicion
     end
-  end
+    
+    # Introduce un string con el volumen de un libro  
+    def volumen(numero, options = {})
+      volumen = numero
+      volumenes << volumen
+    end
+    
+    # Introduce un string con el lugar de publicación de un libro  
+    def lugar_publicacion(pais, options = {})
+      lugar_publicacion = pais
+      lugares_publicacion << lugar_publicacion
+    end
+    
+    # Introduce un string con la editorial de un libro   
+    def editorial(nombre, options = {})
+      editorial = nombre
+      editoriales << editorial
+    end
+    
+    # Para método puts 
+    def to_s()
+      salida = "#{titulo},"
+      salida << " #{autores.join(', ')}, "
+      salida << "(#{fechas_publicacion.join(', ')}), "
+      salida << "(#{ediciones.join(', ')}), "
+      salida << "(#{volumenes.join(', ')}), "
+      salida << "#{lugares_publicacion.join(', ')}, "
+      salida << "#{editoriales.join(', ')} "
+      return salida
+    end
+  end     
+
+  # class Articulo_libro < Referencia
+  #   # Getter + Setter
+  #   attr_accessor :lugar_publicacion, :sinopsis
+    
+  #   # Constructor
+  #   def initialize(*parametros, lugar_publicacion, sinopsis)
+  #       super(*parametros)
+  #       @lugar_publicacion = lugar_publicacion
+  #       @sinopsis = sinopsis
+  #   end
+  # end
+  
+  # class Articulo_revista < Referencia
+  #   # Getter + Setter
+  #   attr_accessor :nombre_revista, :lugar_publicacion, :idioma
+    
+  #   # Constructor
+  #   def initialize(*parametros, nombre_revista, lugar_publicacion, idioma)
+  #       super(*parametros)
+  #       @nombre_revista = nombre_revista
+  #       @lugar_publicacion = lugar_publicacion
+  #       @idioma = idioma
+  #   end
+  # end
+  
+  # class Articulo_periodico < Referencia
+  #   # Getter + Setter
+  #   attr_accessor :nombre_periodico, :num_paginas
+    
+  #   # Constructor
+  #   def initialize(*parametros, nombre_periodico, num_paginas)
+  #       super(*parametros)
+  #       @nombre_periodico = nombre_periodico
+  #       @num_paginas = num_paginas
+  #   end
+  # end
+  
+  # class Documento_electronico < Referencia
+  #   # Getter + Setter
+  #   attr_accessor :medio, :lugar_publicacion, :url
+    
+  #   # Constructor
+  #   def initialize(*parametros, medio, lugar_publicacion, url)
+  #       super(*parametros)
+  #       @medio = medio
+  #       @lugar_publicacion = lugar_publicacion
+  #       @url = url
+  #   end
+  # end
 end
 
 
