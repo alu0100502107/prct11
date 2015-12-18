@@ -115,6 +115,48 @@ describe Bibliografia do
         puts articulo_libro
       end
     end # context Articulo de un Libro
+    
+    context "Artículo de un periodico" do
+      articulo_periodico = Bibliografia::Articulo_periodico.new("Cierran Pueblo Chico") do
+        autor "Alejandro Rodríguez" 
+        fecha_publicacion "18 de diciembre de 2015"
+        lugar_publicacion "Islas Canarias - España"
+        nombre_periodico "Diarios de Avisos"
+        num_pagina "15"
+      end
+     
+      it "Debe existir un artículo de un periodico con título" do
+        expect(articulo_periodico.titulo).to eq("Cierran Pueblo Chico")
+      end
+      
+      it "Debe existir un artículo de un periodico con autor" do
+        expect(articulo_periodico.autores).to eq(["Alejandro Rodríguez"])
+      end
+      
+      it "Debe existir un artículo de un periodico con fecha de publicación" do
+        expect(articulo_periodico.fechas_publicacion).to eq(["18 de diciembre de 2015"])
+      end
+            
+      it "Debe existir un artículo de un periodico con lugar de publicación" do
+        expect(articulo_periodico.lugares_publicacion).to eq(["Islas Canarias - España"])
+      end
+      
+      it "Debe existir un artículo de un periodico con el nombre del periodico" do
+        expect(articulo_periodico.nombres_periodico).to eq(["Diarios de Avisos"])
+      end
+      
+      it "Debe existir un artículo de un periodico con numéro de página" do
+        expect(articulo_periodico.num_paginas).to eq(["15"])
+      end
+    
+      it "Debe crearse un artículo de un periodico con lenguaje de dominio específico" do
+        expect(articulo_periodico.kind_of?Bibliografia::Articulo_periodico).to eq(true)
+      end
+      
+      it "Debe mostrarse el artículo del periodico" do
+        puts articulo_periodico
+      end
+    end # context Artículo de un Periodico
   end # context Lenguajes de Dominio Específico
 end # describe Bibliografia
 
