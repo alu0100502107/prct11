@@ -53,6 +53,68 @@ describe Bibliografia do
         puts libro
       end
     end # context Libro
-  end # context Lenguajes de Dominio Específico"
+    
+    context "Artículo de un libro" do
+      articulo_libro = Bibliografia::Articulo_libro.new("Para qué sirve la Teoría de Sistemas en Sociología") do
+        autor "Francisco Parra Luna"  
+        fecha_publicacion "1981"
+        num_edicion "Sexta"
+        volumen "15"
+        lugar_publicacion "España"
+        editorial "Asociación de Editoriales Universitarias"
+        num_isbn "2589631470"
+        nombre_libro "REIS"
+        num_pagina "77-111"
+      end
+     
+      it "Debe existir un artículo de un libro con título" do
+        expect(articulo_libro.titulo).to eq("Para qué sirve la Teoría de Sistemas en Sociología")
+      end
+      
+      it "Debe existir un artículo de un libro con autor" do
+        expect(articulo_libro.autores).to eq(["Francisco Parra Luna"])
+      end
+      
+      it "Debe existir un artículo de un libro con fecha de publicación" do
+        expect(articulo_libro.fechas_publicacion).to eq(["1981"])
+      end
+        
+      it "Debe existir un artículo de un libro con edición" do  
+        expect(articulo_libro.num_ediciones).to eq(["Sexta"])
+      end
+      
+      it "Debe existir un artículo de un libro con volumen" do
+        expect(articulo_libro.volumenes).to eq(["15"])
+      end
+      
+      it "Debe existir un artículo de un libro con lugar de publicación" do
+        expect(articulo_libro.lugares_publicacion).to eq(["España"])
+      end
+      
+      it "Debe existir un artículo de un libro con editorial" do
+        expect(articulo_libro.editoriales).to eq(["Asociación de Editoriales Universitarias"])
+      end
+      
+      it "Debe existir un artículo de un libro con numéro de isbn" do
+        expect(articulo_libro.num_isbns).to eq(["2589631470"])
+      end
+      
+      it "Debe existir un artículo de un libro con nombre del libro" do
+        expect(articulo_libro.nombres_libro).to eq(["REIS"])
+      end
+      
+      it "Debe existir un artículo de un libro con numéro de páginas" do
+        expect(articulo_libro.num_paginas).to eq(["77-111"])
+      end
+    
+      it "Debe crearse un artículo de un libro con lenguaje de dominio específico" do
+        expect(articulo_libro.kind_of?Bibliografia::Articulo_libro).to eq(true)
+      end
+      
+      it "Debe mostrarse el artículo de un libro" do
+        puts articulo_libro
+      end
+    end # context Articulo de un Libro
+  end # context Lenguajes de Dominio Específico
 end # describe Bibliografia
 
